@@ -17,5 +17,5 @@ Definition of variables used (lines 85 to 91 in index.html file)
 
 For more details
 - Watch Steve Griffith YouTube video for a detailed explanation on using David's QR Code: https://youtu.be/xeLsiAj3fI8 
-- QR Code Generator code with details: https://davidshimjs.github.io/qrcodejs/ for more details about the QR Code Generator
+- Code for the QR Code Generator with details: https://davidshimjs.github.io/qrcodejs/ for more details about the QR Code Generator
 
