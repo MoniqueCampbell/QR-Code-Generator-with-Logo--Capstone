@@ -1,4 +1,5 @@
 Github Project Title: QR-Code-Generator-with-Logo--Capstone
+
 Aim of Project Achieved: Hash the information given then generate a QR Code and a logo with the capability of being printed
 
 To open the QR Code Generator
