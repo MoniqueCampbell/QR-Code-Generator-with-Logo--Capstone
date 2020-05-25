@@ -5,7 +5,7 @@ Aim of Project Achieved: Hash the information given then generate a QR Code and 
 To open the QR Code Generator
 1) Search for index.html file in the QR Code Generator Folder by using File Explorer
 2) Click on the index.html file
-3) The QR Code will be displayed in the browser
+3) The QR Code and logo will be displayed in the browser with the capability to be printed
 
 Definition of variables used (lines 85 to 91 in index.html file)
 - text: This is the word(s) given to the QR Code Generator. Eg: text: "Monique"
