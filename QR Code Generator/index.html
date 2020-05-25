@@ -1,0 +1,98 @@
+<!-- Credits 
+https://davidshimjs.github.io/qrcodejs/ for the QR Code Generator and parts of the HTML
+http://www.developphp.com/video/JavaScript/Partial-Print-Document-Tutorial-HTML-div-Content for code to print HTML 
+https://www.w3schools.com/js/js_random.asp for Random Number Generator
+https://www.geeksforgeeks.org/check-a-number-is-prime-or-not-using-javascript/ for determining a Prime Number Function
+https://tecadmin.net/get-current-date-time-javascript/ for Javascript to get time and date
+https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover for Hoverable Button-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Reservation QR Codes</title>
+        <meta name="viewport" content="width=device-width">
+        <script src="qrcode.js"></script>
+        <script src="sha256.min.js"></script>
+        <link rel="stylesheet" href="main.css">
+
+        <!-- Prints the generated QR Code -->
+        <script>
+            function printContent(tag_id){
+                alert("Print the QR Code in COLOUR!");
+                var restorepage = document.body.innerHTML;
+                var printcontent = document.getElementById(tag_id).innerHTML;
+                document.body.innerHTML = printcontent;
+                window.print();
+                document.body.innerHTML = restorepage;
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <main>
+
+            <div id="output">
+                <h1>Reservation QR Code</h1><img class="logo" src="Parkway Logo.png">
+                <center>
+                    <div id="qroutput"></div>
+                </center>
+            </div>
+
+            <br>
+            <center><button class="button" onclick="printContent('output')">Print QR Code</button></center>
+        </main> 
+        
+        <script>
+            
+            //Generates a random 6 digit number between 100000 and 999999 (both numbers inclusively)
+            function getrandNum(min,max){
+                randnum = Math.floor(Math.random() * (max - min +1))+min;
+                isPrime(randnum)
+            }
+
+            //Checks if the given number is prime
+            function isPrime(num){
+                flag = true
+                for(let i = 2; i <= randnum - 1; i++){
+
+                    //Calls function getrandNum if a factor is found
+                    if (randnum % i == 0){
+                        getrandNum(100000,999999);
+                        flag = false;
+                    }
+                }     
+            }
+
+            getrandNum(100000,999999);
+
+            //Gets today's date
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth()+1) + '-' +today.getDate();
+        
+            //Gets today's time
+            var t_time = new Date();
+            var time = t_time.getHours() + ":" + t_time.getMinutes() + ":" + t_time.getSeconds();
+            
+            let resv_time = time
+            let resv_date = date
+            let user_name = "Monique";
+            let prime_num = randnum
+            let datagiven = resv_time + user_name + resv_date + prime_num;
+
+            //Data required to generate the QR Code 
+            let qrcode = new QRCode("qroutput", {
+                text: sha256(datagiven),
+                width: 300,
+                height: 300,
+                colorDark : "black",
+                colorLight : "blue",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+              
+        </script>
+
+    </body>
+
+</html>
