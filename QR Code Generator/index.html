@@ -5,7 +5,8 @@ http://www.developphp.com/video/JavaScript/Partial-Print-Document-Tutorial-HTML-
 https://www.w3schools.com/js/js_random.asp for Random Number Generator
 https://www.geeksforgeeks.org/check-a-number-is-prime-or-not-using-javascript/ for determining a Prime Number Function
 https://tecadmin.net/get-current-date-time-javascript/ for Javascript to get time and date
-https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover for Hoverable Button-->
+https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover for Hoverable Button
+https://jsfiddle.net/jStefano/gm7boy2p/ for how to use HmacSHA256 -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,6 @@ https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover for Hovera
         <title>Reservation QR Codes</title>
         <meta name="viewport" content="width=device-width">
         <script src="qrcode.js"></script>
-        <script src="sha256.min.js"></script>
         <link rel="stylesheet" href="main.css">
 
         <!-- Prints the generated QR Code -->
@@ -32,8 +32,10 @@ https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover for Hovera
 
     <body>
 
-        <main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
 
+        <main>
             <div id="output">
                 <h1>Reservation QR Code</h1><img class="logo" src="Parkway Logo.png">
                 <center>
@@ -82,18 +84,21 @@ https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover for Hovera
             let prime_num = randnum
             let datagiven = resv_time + user_name + resv_date + prime_num;
 
+            //Use HmacSHA256 to Hash the data given
+            var hash = CryptoJS.HmacSHA256(datagiven, "i19IcCpVwVmMzz2x4hhmqbgl1KeU0WnXBgoDYFeWNgs");
+            var hmac = CryptoJS.enc.Base64.stringify(hash);
+  
             //Data required to generate the QR Code 
             let qrcode = new QRCode("qroutput", {
-                text: sha256(datagiven),
+                text: hmac,
                 width: 300,
                 height: 300,
                 colorDark : "black",
                 colorLight : "blue",
                 correctLevel : QRCode.CorrectLevel.H
             });
-              
         </script>
-
+        
     </body>
 
 </html>
